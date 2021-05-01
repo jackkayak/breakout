@@ -1,0 +1,11 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Press Start 2P', cursive;;
+  font-size: 1.2rem;
+  color: #7d8597;
+}
+
+body {
+  background: #85182a;
+  color: white;
+}
