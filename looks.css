@@ -1,17 +1,17 @@
 * {
   box-sizing: border-box;
-  font-family: 'Press Start 2P', cursive;;
+  font-family: 'Press Start 2P', cursive;
   font-size: 1.2rem;
   color: white;
 }
 
 body {
-  background: #85182a;
+  background: black;
   color: white;
 }
 
 #canvas {
-  background: grey;
+  background: #9d4edd;
   border-radius: 5px;
   position: absolute;
   left: 50%;

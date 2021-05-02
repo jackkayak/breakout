@@ -45,7 +45,7 @@ let score = 0;
 
 function drawScore() {
   ctx.font = "16px Arial";
-  ctx.fillStyle = "#230c33";
+  ctx.fillStyle = "#10002b";
   ctx.fillText("Score: " + score, 8, 20);
 }
 
@@ -62,7 +62,7 @@ let ball = {
   radius: 7,
   draw: function() {
     ctx.beginPath();
-    ctx.fillStyle = "#85182a";
+    ctx.fillStyle = "#3c096c";
     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
     ctx.closePath();
     ctx.fill();
@@ -77,7 +77,7 @@ let paddle = {
   draw: function(){
     ctx.beginPath();
     ctx.rect(this.x, canvas.height - this.height, this.width, this.height);
-    ctx.fillStyle = '#85182a';
+    ctx.fillStyle = '#3c096c';
     ctx.closePath();
     ctx.fill();
     
@@ -92,7 +92,7 @@ let brickPadding = 20;
 let brickOffsetTop = 30;
 let brickOffsetLeft = 35;
 
-var bricks = [];
+let bricks = [];
 
 function generateBricks() {
   for (let c = 0; c < brickColumnCount; c++) {
@@ -113,7 +113,7 @@ function drawBricks() {
         bricks[c][r].y = brickY;
         ctx.beginPath();
         ctx.rect(brickX, brickY, brickWidth, brickHeight);
-        ctx.fillStyle = "#85182a";
+        ctx.fillStyle = "#5a189a";
         ctx.fill();
         ctx.closePath();
       }
