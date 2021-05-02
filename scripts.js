@@ -29,6 +29,14 @@ function keyUpHandler(e){
   }
 }
 
+let score = 0;
+
+function drawScore(){
+  ctx.font = '16px Press Start 2P, cursive';
+  ctx.fillStyle = '#f7fff7';
+  ctx.fillText("Score: " + score, 8, 20);
+}
+
 
 
 //ball and movement
@@ -129,7 +137,7 @@ function play(){
   drawBricks();
   movePaddle();
   collisionDetection();
-  
+  drawScore();
   
   ball.x += ball.dx;
   ball.y += ball.dy;
@@ -175,12 +183,14 @@ function collisionDetection(){
         ) {
           ball.dy *= -1;
           b.status = 0;
-          //score++
+          score++
         }
       }
     }
   }
 }
+
+
 
 
 
