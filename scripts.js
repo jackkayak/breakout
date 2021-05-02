@@ -99,7 +99,15 @@ function play(){
      
    }
   
+  //bounce of paddle
   
+if(ball.x >= paddle.x &&
+  ball.x <= paddle.x + paddle.width &&
+  ball.y + ball.radius >= canvas.height - paddle.height)
+{
+  ball.dy *= -1;
+  console.log('hit');
+}
   
   
   
