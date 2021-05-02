@@ -128,6 +128,7 @@ function play(){
   paddle.draw();
   drawBricks();
   movePaddle();
+  collisionDetection();
   
   
   ball.x += ball.dx;
@@ -158,6 +159,27 @@ if(ball.x >= paddle.x &&
   
   
   
+}
+
+
+function collisionDetection(){
+  for (let c = 0; c < brickColumnCount; c++) {
+    for (let r = 0; r < brickRowCount; r++) {
+      var b = bricks[c][r];
+      if (b.status == 1) {
+        if (
+          ball.x >= b.x &&
+          ball.x <= b.x + brickWidth &&
+          ball.y >= b.y &&
+          ball.y <= b.y + brickHeight
+        ) {
+          ball.dy *= -1;
+          b.status = 0;
+          //score++
+        }
+      }
+    }
+  }
 }
 
 
