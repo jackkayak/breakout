@@ -2,7 +2,7 @@
   box-sizing: border-box;
   font-family: 'Press Start 2P', cursive;;
   font-size: 1.2rem;
-  color: #7d8597;
+  color: white;
 }
 
 body {
@@ -11,13 +11,13 @@ body {
 }
 
 #canvas {
-  background: #caa8f5;
+  background: grey;
   border-radius: 5px;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  border: 1px solid #9984d4;
+  border: 1px solid white;
 }
 
 .high-score {
