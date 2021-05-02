@@ -1,5 +1,7 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
+const scoreDisplay = document.querySelector('.high-Score');
+const reset = document.querySelector(".reset");
 
 canvas.height = 500;
 canvas.width = 500;
@@ -10,6 +12,8 @@ let leftPressed = false;
 
 document.addEventListener('keydown', keyDownHandler);
 document.addEventListener('keyup', keyUpHandler);
+
+
 
 function keyDownHandler(e){
   if(e.key == 'Right' || e.key == 'ArrowRight'){
@@ -29,18 +33,26 @@ function keyUpHandler(e){
   }
 }
 
+function keyUpHandler(e) {
+  if (e.key == "Right" || e.key == "ArrowRight") {
+    rightPressed = false;
+  } else if (e.key == "Left" || e.key == "ArrowLeft") {
+    leftPressed = false;
+  }
+}
+
 let score = 0;
 
-function drawScore(){
-  ctx.font = '16px Press Start 2P, cursive';
-  ctx.fillStyle = '#f7fff7';
+function drawScore() {
+  ctx.font = "16px Arial";
+  ctx.fillStyle = "#230c33";
   ctx.fillText("Score: " + score, 8, 20);
 }
 
 
 
 //ball and movement
-let speed = 3;
+let speed = 4;
 
 let ball = {
   x: canvas.height / 2,
@@ -128,6 +140,24 @@ function movePaddle(){
 }
 }
 
+// highscore
+let highScore = parseInt(localStorage.getItem("highScore"));
+
+if (isNaN(highScore)) {
+  highScore = 0;
+}
+
+scoreDisplay.innerHTML = `High Score: ${highScore}`;
+
+//reset
+
+reset.addEventListener("click", ()=>{
+  localStorage.setItem('highScore', "0");
+  scoreDisplay.innerHTML = "High Score: 0";
+  drawBricks();
+});
+                       
+
 function play(){
   
   
@@ -151,10 +181,19 @@ function play(){
     ball.dy *= -1;
      
    }
+
   
   // reset score
-  
-  if ball.y +ba
+  if (ball.y + ball.radius > canvas.height) {
+    if (score > parseInt(localStorage.getItem("highScore"))) {
+      localStorage.setItem("highScore", score.toString());
+      scoreDisplay.innerHTML = `High Score: ${score}`;
+    }
+    score = 0;
+    generateBricks();
+    ball.dx = speed;
+    ball.dy = -speed + 1;
+  }
   
   //bounce of paddle
   
