@@ -137,6 +137,7 @@ function play(){
   drawBricks();
   movePaddle();
   collisionDetection();
+  levelUp();
   drawScore();
   
   ball.x += ball.dx;
@@ -150,6 +151,10 @@ function play(){
     ball.dy *= -1;
      
    }
+  
+  // reset score
+  
+  if ball.y +ba
   
   //bounce of paddle
   
@@ -190,7 +195,28 @@ function collisionDetection(){
   }
 }
 
+function levelUp() {
+  if (score % 15 == 0 && score != 0) {
+    if (ball.y > canvas.height / 2) {
+      generateBricks();
+    }
 
+    if (gameLevelUp) {
+      if (ball.dy > 0) {
+        ball.dy += 1;
+        gameLevelUp = false;
+      } else {
+        ball.dy -= 1;
+        gameLevelUp = false;
+      }
+      console.log(ball.dy);
+    }
+  }
+
+  if (score % 15 != 0) {
+    gameLevelUp = true;
+  }
+}
 
 
 
