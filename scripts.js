@@ -4,6 +4,34 @@ const ctx = canvas.getContext("2d");
 canvas.height = 500;
 canvas.width = 500;
 
+
+let rightPressed = false;
+let leftPressed = false;
+
+document.addEventListener('keydown', keyDownHandler);
+document.addEventListener('keyup', keyUpHandler);
+
+function keyDownHandler(e){
+  if(e.key == 'Right' || e.key == 'ArrowRight'){
+    rightPressed = true;
+    
+  }else if(e.key == 'left' || e.key == 'ArrowLeft'){
+    leftPressed = true;
+  }
+}
+
+function keyUpHandler(e){
+  if(e.key == 'Right' || e.key == 'ArrowRight'){
+    rightPressed = false;
+    
+  }else if(e.key == 'left' || e.key == 'ArrowLeft'){
+    leftPressed = false;
+  }
+}
+
+
+
+
 let speed = 3;
 
 let ball = {
@@ -36,12 +64,28 @@ let paddle = {
   }
 };
 
+function movePaddle(){
+  if(rightPressed){
+    paddle.x += 7;
+    if(paddle.x +paddle.width >= canvas.width){
+      paddle.x = canvas.width - paddle.width;
+    }
+    
+  }else if(leftPressed){
+    paddle.x -= 7;
+    if(paddle.x < 0){
+      paddle.x = 0;
+  }
+}
+}
+
 function play(){
   
   
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ball.draw();
   paddle.draw();
+  movePaddle();
   
   ball.x += ball.dx;
   ball.y += ball.dy;
