@@ -31,7 +31,7 @@ function keyUpHandler(e){
 
 
 
-
+//ball and movement
 let speed = 3;
 
 let ball = {
@@ -49,7 +49,7 @@ let ball = {
   }
 };
 
-
+//paddle 
 let paddle = {
   height: 10,
   width: 76,
@@ -63,6 +63,47 @@ let paddle = {
     
   }
 };
+// bricks generation 
+let brickRowCount = 3;
+let brickColumnCount = 5;
+let brickWidth = 70;
+let brickHeight = 20;
+let brickPadding = 20;
+let brickOffsetTop = 30;
+let brickOffsetLeft = 35;
+
+var bricks = [];
+
+function generateBricks() {
+  for (let c = 0; c < brickColumnCount; c++) {
+    bricks[c] = [];
+    for (let r = 0; r < brickRowCount; r++) {
+      bricks[c][r] = { x: 0, y: 0, status: 1 };
+    }
+  }
+}
+
+function drawBricks() {
+  for (let c = 0; c < brickColumnCount; c++) {
+    for (let r = 0; r < brickRowCount; r++) {
+      if (bricks[c][r].status === 1) {
+        let brickX = c * (brickWidth + brickPadding) + brickOffsetLeft;
+        let brickY = r * (brickHeight + brickPadding) + brickOffsetTop;
+        bricks[c][r].x = brickX;
+        bricks[c][r].y = brickY;
+        ctx.beginPath();
+        ctx.rect(brickX, brickY, brickWidth, brickHeight);
+        ctx.fillStyle = "#85182a";
+        ctx.fill();
+        ctx.closePath();
+      }
+    }
+  }
+}
+
+
+
+
 
 function movePaddle(){
   if(rightPressed){
@@ -85,7 +126,9 @@ function play(){
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ball.draw();
   paddle.draw();
+  drawBricks();
   movePaddle();
+  
   
   ball.x += ball.dx;
   ball.y += ball.dy;
@@ -118,6 +161,10 @@ if(ball.x >= paddle.x &&
 }
 
 
+
+
+
+generateBricks();
 play();
 
 
